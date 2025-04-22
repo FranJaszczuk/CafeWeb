@@ -36,7 +36,7 @@
         <!-- navbar -->
         <div class="contenedor-navbar">
             <nav class="navbar contenedor">
-                <i class="fa-solid fa-bars"></i>
+                <i id="menu-hamburguesa" class="fa-solid fa-bars"></i>
                 <ul class="menu">
                     <li><a href="#">Inicio</a></li>
                     <li><a href="#">Moca helado</a></li>
@@ -323,7 +323,179 @@
                 </div>
             </div>
         </section>
-    </main>
 
+        <section class="galeria">
+            <img
+                src="img/gallery1.jpg"
+                alt="Imagen Galeria 1"
+                class="galeria-img-1"
+            /><img
+                src="img/gallery2.jpg"
+                alt="Imagen Galeria 2"
+                class="galeria-img-2"
+            /><img
+                src="img/gallery3.jpg"
+                alt="Imagen Galeria 3"
+                class="galeria-img-3"
+            /><img
+                src="img/gallery4.jpg"
+                alt="Imagen Galeria 4"
+                class="galeria-img-4"
+            /><img
+                src="img/gallery5.jpg"
+                alt="Imagen Galeria 5"
+                class="galeria-img-5"
+            /><img
+                src="img/gallery6.jpg"
+                alt="Imagen Galeria 6"
+                class="galeria-img-6"
+            />
+            <img
+                src="img/gallery7.jpg"
+                alt="Imagen Galeria 7"
+                class="galeria-img-7"
+            />
+        </section>
+
+        <!-- Sección de Contacto -->
+        <section class="contact-section">
+            <div class="container">
+                <h1 class="heading-1">Contáctanos</h1>
+                
+                <div class="contact-container">
+                    <div class="contact-info-container">
+                        <div class="contact-info-content">
+                            <h3>Información de Contacto</h3>
+                            <p>Si tienes preguntas o comentarios, no dudes en ponerte en contacto con nosotros.</p>
+                            
+                            <div class="contact-info-details">
+                                <div class="contact-detail">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <span>71 Pennington Lane Vernon Rockville, CT 06066</span>
+                                </div>
+                                <div class="contact-detail">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span>123-456-7890</span>
+                                </div>
+                                <div class="contact-detail">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <span>baristas@support.com</span>
+                                </div>
+                                <div class="contact-detail">
+                                    <i class="fa-solid fa-clock"></i>
+                                    <span>Lunes a Viernes: 8:00 AM - 8:00 PM</span>
+                                </div>
+                            </div>
+                            
+                            <div class="social-icons">
+                                <span class="facebook">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </span>
+                                <span class="twitter">
+                                    <i class="fa-brands fa-twitter"></i>
+                                </span>
+                                <span class="youtube">
+                                    <i class="fa-brands fa-youtube"></i>
+                                </span>
+                                <span class="pinterest">
+                                    <i class="fa-brands fa-pinterest-p"></i>
+                                </span>
+                                <span class="instagram">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-container">
+                        <form class="contact-form">
+                            <h3>Envíanos un mensaje</h3>
+                            
+                            <div class="form-group">
+                                <input type="text" placeholder="Nombre completo" required>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="email" placeholder="Correo electrónico" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" placeholder="Teléfono">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="text" placeholder="Asunto">
+                            </div>
+                            
+                            <div class="form-group">
+                                <textarea placeholder="Tu mensaje" rows="5" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-submit">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+    </main>
+    <script>
+        // Script para el menú de hamburguesa
+        document.addEventListener('DOMContentLoaded', function() {
+            // Seleccionar elementos necesarios
+            const menuIcon = document.getElementById('menu-hamburguesa');
+            const menu = document.querySelector('.menu');
+            
+            // Variable para rastrear el estado del menú
+            let menuVisible = false;
+            
+            // Función para mostrar/ocultar el menú
+            function toggleMenu() {
+            console.log("Clic registrado");  // Esto debería aparecer en la consola
+            if (menuVisible) {
+                menu.style.display = 'none';
+                menuVisible = false;
+            } else {
+                menu.style.display = 'flex';
+                menu.style.flexDirection = 'column';
+                menu.style.position = 'absolute';
+                menu.style.top = '100%';
+                menu.style.left = '0';
+                menu.style.width = '100%';
+                menu.style.backgroundColor = 'var(--primary-color)';
+                menu.style.padding = '2rem';
+                menu.style.zIndex = '100';
+                menu.style.boxShadow = '0 5px 10px rgba(0,0,0,0.2)';
+                menuVisible = true;
+            }
+        }
+            
+            // Agregar evento de clic al icono del menú
+            menuIcon.addEventListener('click', toggleMenu);
+            
+            // Cerrar el menú cuando se hace clic en un enlace
+            const menuLinks = document.querySelectorAll('.menu a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        toggleMenu();
+                    }
+                });
+            });
+            
+            // Ajustar el menú cuando cambia el tamaño de la ventana
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    menu.removeAttribute('style');
+                    menuVisible = false;
+                } else if (!menuVisible) {
+                    menu.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
